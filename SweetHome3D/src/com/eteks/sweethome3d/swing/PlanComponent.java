@@ -1631,10 +1631,30 @@ public class PlanComponent extends JComponent implements PlanView, Scrollable, P
    * Returns the collection of walls, furniture, rooms and dimension lines of the home 
    * painted by this component wherever the level they belong to is selected or not.
    */
+
   protected List<Selectable> getPaintedItems() {
-    return this.home.getSelectableViewableItems();
+    List<Selectable> viewableItems = this.home.getSelectableViewableItems();
+    List<Selectable> selectedLevelItems = new ArrayList<Selectable>();
+
+    Level selectedLevel = this.home.getSelectedLevel();
+
+    for (Selectable item : viewableItems) {
+      if (item instanceof Elevatable) {
+        Elevatable elevatableItem = (Elevatable)item;
+
+        if (elevatableItem.getLevel() == null
+                || elevatableItem.isAtLevel(selectedLevel)) {
+          selectedLevelItems.add(item);
+        }
+      } else {
+        selectedLevelItems.add(item);
+      }
+    }
+
+    return selectedLevelItems;
   }
-  
+
+
   /**
    * Returns the bounds of the given collection of <code>items</code>.
    */
