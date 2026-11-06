@@ -1626,10 +1626,10 @@ public class PlanComponent extends JComponent implements PlanView, Scrollable, P
     }
     return this.planBoundsCache;
   }
-  
+
   /**
-   * Returns the collection of walls, furniture, rooms and dimension lines of the home 
-   * painted by this component wherever the level they belong to is selected or not.
+   * Returns the collection of walls, furniture, rooms and dimension lines
+   * belonging to the selected level or to no specific level.
    */
 
   protected List<Selectable> getPaintedItems() {
